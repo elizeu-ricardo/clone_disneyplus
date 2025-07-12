@@ -1,0 +1,16 @@
+const gulp = require('gulp');
+const sass = require('gulp-sass') (require('sass'));
+
+function styles() {
+    return gulp.src('./src/styles/*.scss')
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(gulp.dest('./dist/css'));
+}
+
+function obs() {
+    gulp.watch('./styles/*.scss', gulp.parallel(styles))
+};
+
+
+exports.default = styles;
+exports.watch = obs;
