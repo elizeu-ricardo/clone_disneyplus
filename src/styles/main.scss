@@ -2,6 +2,10 @@
 @use 'hero';
 @use 'shows';
 @use 'plans';
+@use 'available-devices';
+@use 'faq';
+@use 'footer';
+@use 'header';
 
 @font-face {
     font-size: Avenir;
@@ -19,6 +23,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Avenir, sans-serif;
+    list-style: none;
 
 }
 
@@ -39,14 +44,26 @@ body {
 
 .text--big {
     @include text(18px);
+
+    @media (max-width: 768px) {
+        @include text(15px)
+    }
 }
 
 .text {
     @include text;
+
+    @media (max-width: 768px) {
+        @include text(14px)
+    }
 }
 
 .text--small {
     @include text(12px);
+
+    @media (max-width: 768px) {
+        @include title(11px)
+    }
 }
 
 .link-text {
@@ -57,14 +74,26 @@ body {
 
 .title--big {
     @include title(44px);
+
+    @media (max-width: 768px) {
+        @include title(26px)
+    }
 }
 
 .title {
     @include title;
+
+    @media (max-width: 768px) {
+        @include title(24px)
+    }
 }
 
 .title--small {
     @include title(28px);
+
+    @media (max-width: 768px) {
+        @include title(22px)
+    }
 }
 
 .button {
@@ -74,10 +103,83 @@ body {
     height: 60px;
     font-size: 18px;
     color: variaveis.$corTextosecundario;
-    background-color: #6421ff;
+    background-color: variaveis.$corBgBtnPrimary;
     text-transform: uppercase;
     border: none;
     border-radius: 4px;
-    margin-top: 2vw;
-    margin-bottom: 8px;
+    text-decoration: none;
+    padding: 8px 14px;
+    letter-spacing: 1px;
+    border: 1px solid variaveis.$corBgBtnPrimary;
+
+    &:hover {
+            background-color: lighten(variaveis.$corBgBtnPrimary, 3%);
+        }
+
+    &--secondary {
+        background-color: variaveis.$corBgBtnsecondary;
+        border-color: variaveis.$corBgBtnsecondary;
+
+        &:hover {
+            background-color: lighten(variaveis.$corBgBtnsecondary, 3%);
+        }
+    }
+
+    &--dark {
+        background-color: rgba(variaveis.$corBgBtnDark, 0.8);
+        border-color: variaveis.$corTextosecundario;
+
+        &:hover {
+            background-color: variaveis.$corTextosecundario;
+            color: variaveis.$corDeFundo;
+        }
+    }
+}
+
+.image-text-section {
+    padding: 5.6vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+
+        img {
+            max-width: 100%;
+        }
+
+            &__text__container {
+                 padding: 0 2vw;
+
+            h2 {
+                padding-bottom: 24px;
+            }
+        }
+
+        &--image-full-width {
+            display: block;
+            position: relative;
+
+            img {
+                width: 100%;
+            }
+            &__text__container {
+                position: absolute;
+                 top: 0;
+                 left: 50%;
+                 height: 100%;
+                 width: calc(50% - 5.6vw);
+                 display: flex;
+                 flex-direction: column;
+                 justify-content: center;
+
+                 @media (max-width: 768px) {
+                    position: relative;
+                    left: 0;
+                    width: 100%;
+                 }
+            }
+         }
 }
